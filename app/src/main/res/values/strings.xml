@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KotlinLesson</string>
+    <string name="go_to_activity3">Go to activity3</string>
 </resources>
