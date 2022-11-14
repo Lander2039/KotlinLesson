@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">KotlinLesson</string>
     <string name="go_to_activity3">Go to activity3</string>
+    <string name="go_to_activity_2">Go to activity 2</string>
+    <string name="click_me">click me</string>
+    <string name="Hello_world">Hello World</string>
+    <string name="FromMainActivity">\" from MainActivity2\"</string>
+    <string name="NoDate">no Data!</string>
+    <string name="GoToString">go_to_activity3</string>
+    <string name="go_t1">go_t1</string>
 </resources>
