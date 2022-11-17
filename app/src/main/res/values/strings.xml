@@ -8,4 +8,13 @@
     <string name="NoDate">no Data!</string>
     <string name="GoToString">go_to_activity3</string>
     <string name="go_t1">go_t1</string>
+    <string name="close_app">close_the_app</string>
+    <string name="go_ti">go_ti</string>
+    <string name="activity_3">Activity 3</string>
+    <string name="button">Button</string>
+    <string name="display_texts">display texts</string>
+    <string name="enter_your_name">enter your name</string>
+    <string name="enter_your_password">enter your password</string>
+    <string name="enterYourPassword">enter your password</string>
+    <string name="Black">black</string>
 </resources>

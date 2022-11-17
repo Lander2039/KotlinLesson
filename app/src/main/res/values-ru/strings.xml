@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Проект на языке Котлин</string>
+    <string name="go_to_activity3">Перейти в активити 3</string>
+    <string name="go_to_activity_2">Перейти в активити 2</string>
+    <string name="click_me">Нажми на меня</string>
+    <string name="Hello_world">Привет!!!</string>
+    <string name="FromMainActivity">\" С Маин активити 2\"</string>
+    <string name="NoDate">Ошибка!!!</string>
+    <string name="GoToString">Перейти в активити 3</string>
+    <string name="go_t1">Назад</string>
+    <string name="close_app">Закрыть приложение</string>
+    <string name="go_ti">Назад</string>
+    <string name="activity_3">Активити 3</string>
+    <string name="button">Кнопка</string>
+    <string name="display_texts">display texts</string>
+    <string name="enter_your_name">enter your name</string>
+    <string name="enter_your_password">enter_your_password</string>
+    <string name="enterYourPassword">enter your password</string>
+</resources>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item
-    android:id="@+id/close_app"
-    android:title="Close App"/>
     <item
-        android:id="@+id/goBack"
-        android:title="@string/go_t1"/>
+        android:id= "@+id/close"
+        android:title = "@string/close_app"/>
+    <item
+        android:id = "@+id/goBlack"
+        android:title = "@string/go_ti"/>
+
 </menu>

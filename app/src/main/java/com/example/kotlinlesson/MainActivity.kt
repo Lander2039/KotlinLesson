@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.kotlinlesson.MainActivity2.Companion.startMainActivity2
 
@@ -39,13 +40,4 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            android.R.id.home -> onBackPressed()
-            R.id.close_app -> finishAffinity()
-            R.id.goBack -> onBackPressed()
-        return super.onOptionsItemSelected(item)
     }
-    }
-}
