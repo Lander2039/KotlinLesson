@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import com.example.kotlinlesson.KotlinActivity
 
 class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +44,7 @@ class MainActivity2 : AppCompatActivity() {
             android.R.id.home -> onBackPressed()
             R.id.close -> finishAffinity()
             R.id.goBlack -> onBackPressed()
+            R.id.goKotlin -> startActivity(Intent(this, KotlinActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }

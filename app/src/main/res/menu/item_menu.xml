@@ -7,4 +7,8 @@
         android:id = "@+id/goBlack"
         android:title = "@string/go_ti"/>
 
+    <item
+        android:id = "@+id/goKotlin"
+        android:title = "@string/go_kotlin"/>
+
 </menu>
