@@ -1,8 +1,9 @@
-package com.example.kotlinlesson
+package com.example.kotlinlesson.presentation.view
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.kotlinlesson.R
 import com.example.kotlinlesson.model.ItemsModel
 
 class ItemsViewModel : ViewModel() {
@@ -18,34 +19,44 @@ class ItemsViewModel : ViewModel() {
 
     fun getData(){
         val listItems = listOf<ItemsModel>(
-            ItemsModel(R.drawable.android,
+            ItemsModel(
+                R.drawable.android,
                 "Android",
                 "26/02/2003"),
-            ItemsModel(R.drawable.ios,
+            ItemsModel(
+                R.drawable.ios,
                 "IOS",
                 "16/02/2021"),
-            ItemsModel(R.drawable.xamarin,
+            ItemsModel(
+                R.drawable.xamarin,
                 "Xamarin",
                 "21/12/2022"),
-            ItemsModel(R.drawable.net,
+            ItemsModel(
+                R.drawable.net,
                 ".Net",
                 "23/05/2013"),
-            ItemsModel(R.drawable.cplusplus,
+            ItemsModel(
+                R.drawable.cplusplus,
                 "C++",
                 "16/03/2013"),
-            ItemsModel(R.drawable.cplusplus,
+            ItemsModel(
+                R.drawable.cplusplus,
                 "C",
                 "22/02/2010"),
-            ItemsModel(R.drawable.golang,
+            ItemsModel(
+                R.drawable.golang,
                 "Golang",
                 "23/04/2041"),
-            ItemsModel(R.drawable.php,
+            ItemsModel(
+                R.drawable.php,
                 "PHP",
                 "26/03/2023"),
-            ItemsModel(R.drawable.ruby,
+            ItemsModel(
+                R.drawable.ruby,
                 "Ruby",
                 "26/02/2016"),
-            ItemsModel(R.drawable.js,
+            ItemsModel(
+                R.drawable.js,
                 "JS",
                 "01/05/2022")
         )

@@ -1,4 +1,4 @@
-package com.example.kotlinlesson.listener
+package com.example.kotlinlesson.presentation.adapter.listener
 
 import android.widget.ImageView
 
