@@ -2,4 +2,5 @@
 <resources>
     <string name="your_are_in_details_fragment">Your are in Details FRAGMENT</string>
     <string name="Imageviewclicked">ImageView clicked</string>
+    <string name="finish">Finish</string>
 </resources>

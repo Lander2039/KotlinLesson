@@ -1,4 +1,4 @@
-package com.example.kotlinlesson
+package com.example.kotlinlesson.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlinlesson.BundleConstants.IMAGE_VIEW
-import com.example.kotlinlesson.BundleConstants.NAME
-import com.example.kotlinlesson.adapter.ItemsAdapter
-import com.example.kotlinlesson.listener.ItemsListener
-import com.example.kotlinlesson.model.ItemsModel
+import com.example.kotlinlesson.utils.BundleConstants.IMAGE_VIEW
+import com.example.kotlinlesson.utils.BundleConstants.NAME
+import com.example.kotlinlesson.R
+import com.example.kotlinlesson.data.ItemsRepositoryImpl
+import com.example.kotlinlesson.domain.ItemsInteractor
+import com.example.kotlinlesson.presentation.adapter.ItemsAdapter
+import com.example.kotlinlesson.presentation.adapter.listener.ItemsListener
 
 
 //not use
@@ -23,7 +26,9 @@ private const val DETAILS = "Details"
 class ItemsFragment : Fragment(), ItemsListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
-    private val viewModel: ItemsViewModel by viewModels()
+
+    private val viewModel: ItemsViewModel by viewModels{ItemsViewModelFactory(ItemsInteractor(ItemsRepositoryImpl()))}
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

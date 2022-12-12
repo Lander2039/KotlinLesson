@@ -1,4 +1,4 @@
-package com.example.kotlinlesson
+package com.example.kotlinlesson.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.kotlinlesson.BundleConstants.IMAGE_VIEW
-import com.example.kotlinlesson.BundleConstants.NAME
-import com.example.kotlinlesson.ItemsFragment.Companion.DATE
-import java.util.Date
+import com.example.kotlinlesson.utils.BundleConstants.IMAGE_VIEW
+import com.example.kotlinlesson.utils.BundleConstants.NAME
+import com.example.kotlinlesson.presentation.ItemsFragment.Companion.DATE
+import com.example.kotlinlesson.R
 
 class DetailsFragment : Fragment() {
 
