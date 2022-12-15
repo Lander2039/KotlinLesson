@@ -1,4 +1,4 @@
-package com.example.kotlinlesson.presentation
+package com.example.kotlinlesson.presentation.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinlesson.utils.BundleConstants.IMAGE_VIEW
@@ -27,7 +26,7 @@ class ItemsFragment : Fragment(), ItemsListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-    private val viewModel: ItemsViewModel by viewModels{ItemsViewModelFactory(ItemsInteractor(ItemsRepositoryImpl()))}
+    private val viewModel: ItemsViewModel by viewModels{ ItemsViewModelFactory(ItemsInteractor(ItemsRepositoryImpl())) }
 
 
     override fun onCreateView(

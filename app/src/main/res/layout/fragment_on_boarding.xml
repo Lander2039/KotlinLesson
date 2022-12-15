@@ -6,12 +6,12 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.kotlinlesson.presentation.model.OnBoardingViewModel" />
+            type="com.example.kotlinlesson.presentation.view.OnBoardingViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.OnBoardingFragment">
+        tools:context=".presentation.view.OnBoardingFragment">
 
 
         <TextView
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="ONBORDING"
+            android:text="@={viewModel.onBoardingText}"
             android:textColor="@color/black"
             android:textSize="50sp"
             app:layout_constraintBottom_toBottomOf="parent"

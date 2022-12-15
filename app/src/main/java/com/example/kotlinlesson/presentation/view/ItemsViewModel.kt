@@ -1,10 +1,9 @@
-package com.example.kotlinlesson.presentation
+package com.example.kotlinlesson.presentation.view
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlinlesson.R
-import com.example.kotlinlesson.data.ItemsRepositoryImpl
 import com.example.kotlinlesson.domain.ItemsInteractor
 import com.example.kotlinlesson.presentation.model.ItemsModel
 
