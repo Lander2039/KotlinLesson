@@ -16,17 +16,18 @@ import com.example.kotlinlesson.data.ItemsRepositoryImpl
 import com.example.kotlinlesson.domain.ItemsInteractor
 import com.example.kotlinlesson.presentation.adapter.ItemsAdapter
 import com.example.kotlinlesson.presentation.adapter.listener.ItemsListener
+import dagger.hilt.android.AndroidEntryPoint
 
 
 //not use
 //const val NAME = "name"
 private const val DETAILS = "Details"
-
+@AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemsListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-    private val viewModel: ItemsViewModel by viewModels{ ItemsViewModelFactory(ItemsInteractor(ItemsRepositoryImpl())) }
+    private val viewModel: ItemsViewModel by viewModels()
 
 
     override fun onCreateView(
