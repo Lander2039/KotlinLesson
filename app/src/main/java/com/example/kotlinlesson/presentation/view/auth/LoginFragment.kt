@@ -1,4 +1,4 @@
-package com.example.kotlinlesson.presentation.dataBinding
+package com.example.kotlinlesson.presentation.view.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.example.kotlinlesson.R
 import com.example.kotlinlesson.databinding.FragmentLoginBinding
-import com.example.kotlinlesson.presentation.view.FragmentNavigation
-import com.example.kotlinlesson.presentation.view.OnBoardingFragment
+import com.example.kotlinlesson.presentation.view.home.HomeFragment
 
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
@@ -30,13 +32,19 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = viewModel
-        binding.viewHandler = ViewHandler()
-        binding.lifecycleOwner = viewLifecycleOwner
-    }
-    inner class ViewHandler{
-        fun goToTheOnBoarding(){
-            FragmentNavigation.moveFragment(parentFragmentManager,OnBoardingFragment(),true)
+        binding.btnLogin.setOnClickListener {
+            viewModel.loginUser(
+                binding.etTextName.text.toString(),
+                binding.etTextPassword.text.toString()
+            )
+        }
+
+        viewModel.nav.observe(viewLifecycleOwner){
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_container, HomeFragment())
+                .addToBackStack("")
+                .commit()
         }
     }
 }

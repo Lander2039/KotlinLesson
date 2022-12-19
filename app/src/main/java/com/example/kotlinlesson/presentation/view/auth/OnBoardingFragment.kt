@@ -1,4 +1,4 @@
-package com.example.kotlinlesson.presentation.view
+package com.example.kotlinlesson.presentation.view.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.databinding.FragmentOnBoardingBinding
+import com.example.kotlinlesson.presentation.view.home.ItemsFragment
 
 
 class OnBoardingFragment : Fragment() {

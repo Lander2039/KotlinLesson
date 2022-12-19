@@ -1,8 +1,8 @@
-package com.example.kotlinlesson.data
+package com.example.kotlinlesson.data.items
 
 import com.example.kotlinlesson.R
-import com.example.kotlinlesson.domain.ItemsRepository
-import com.example.kotlinlesson.presentation.model.ItemsModel
+import com.example.kotlinlesson.domain.items.ItemsRepository
+import com.example.kotlinlesson.domain.model.ItemsModel
 import javax.inject.Inject
 
 class ItemsRepositoryImpl @Inject constructor() : ItemsRepository {

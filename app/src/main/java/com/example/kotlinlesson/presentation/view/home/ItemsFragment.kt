@@ -1,4 +1,4 @@
-package com.example.kotlinlesson.presentation.view
+package com.example.kotlinlesson.presentation.view.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,10 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinlesson.utils.BundleConstants.IMAGE_VIEW
 import com.example.kotlinlesson.utils.BundleConstants.NAME
 import com.example.kotlinlesson.R
-import com.example.kotlinlesson.data.ItemsRepositoryImpl
-import com.example.kotlinlesson.domain.ItemsInteractor
 import com.example.kotlinlesson.presentation.adapter.ItemsAdapter
 import com.example.kotlinlesson.presentation.adapter.listener.ItemsListener
+import com.example.kotlinlesson.presentation.view.ItemsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 

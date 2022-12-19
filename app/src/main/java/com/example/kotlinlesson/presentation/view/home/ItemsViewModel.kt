@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlinlesson.R
-import com.example.kotlinlesson.domain.ItemsInteractor
-import com.example.kotlinlesson.presentation.model.ItemsModel
+import com.example.kotlinlesson.domain.items.ItemsInteractor
+import com.example.kotlinlesson.domain.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

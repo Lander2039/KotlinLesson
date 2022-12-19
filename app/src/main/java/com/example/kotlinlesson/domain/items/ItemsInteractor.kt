@@ -1,6 +1,6 @@
-package com.example.kotlinlesson.domain
+package com.example.kotlinlesson.domain.items
 
-import com.example.kotlinlesson.presentation.model.ItemsModel
+import com.example.kotlinlesson.domain.model.ItemsModel
 import javax.inject.Inject
 
 class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepository) {

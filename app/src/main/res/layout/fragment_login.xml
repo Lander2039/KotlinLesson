@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="viewModel"
-            type="com.example.kotlinlesson.presentation.dataBinding.LoginViewModel" />
-        <variable
-            name="viewHandler"
-            type="com.example.kotlinlesson.presentation.dataBinding.LoginFragment.ViewHandler" />
-
-    </data>
-<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.dataBinding.LoginFragment">
+    tools:context=".presentation.view.auth.LoginFragment"
+    >
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
         android:layout_width="167dp"
         android:layout_height="51dp"
         android:text="@string/login"
-        android:onClick="@{()-> viewModel.showCreds()}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="TouchTargetSizeCheck"
-            android:text="@={viewModel.userName}"
             android:backgroundTint="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,7 +59,6 @@
             android:layout_height="wrap_content"
             tools:ignore="TouchTargetSizeCheck"
             android:backgroundTint="@color/white"
-            android:text="@={viewModel.userPassword}"
             tools:layout_editor_absoluteX="20dp"
             tools:layout_editor_absoluteY="52dp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -80,7 +68,6 @@
         android:layout_width="159dp"
         android:layout_height="109dp"
         android:gravity="center"
-        android:text="@{viewModel.userCreds}"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,18 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnLogin"
         app:layout_constraintVertical_bias="0.241" />
 
-    <Button
-        android:id="@+id/bnt_goToBoarding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:onClick="@{()->viewHandler.goToTheOnBoarding()}"
-        android:text="@string/go_to_onboarding"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
