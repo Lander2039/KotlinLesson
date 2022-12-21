@@ -13,8 +13,11 @@ import com.example.kotlinlesson.utils.BundleConstants.IMAGE_VIEW
 import com.example.kotlinlesson.utils.BundleConstants.NAME
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.databinding.FragmentDetailsBinding
+import com.example.kotlinlesson.presentation.view.auth.LoginFragment
 import com.example.kotlinlesson.presentation.view.home.ItemsFragment.Companion.DATE
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private var _binding: FragmentDetailsBinding? = null
@@ -25,7 +28,7 @@ class DetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDetailsBinding.inflate(inflater,container,false)
         return binding.root
     }
@@ -33,24 +36,27 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val detailsName = view.findViewById<TextView>(R.id.detailsName)
-        val detailsData = view.findViewById<TextView>(R.id.detailsDate)
-        val detailsImage = view.findViewById<ImageView>(R.id.detailsImage)
-
-        val btnlogout = view.findViewById<Button>(R.id.btnLogout)
-
         val bundle = arguments
         bundle?.let { safeBundle ->
             val name = safeBundle.getString(NAME)
             val date = safeBundle.getString(DATE)
             val image = safeBundle.getInt(IMAGE_VIEW)
 
-            detailsName.text = name
-            detailsData.text = date
-            detailsImage.setBackgroundResource(image)
+            binding.detailsName.text = name
+            binding.detailsDate.text = date
+            binding.detailsImage.setBackgroundResource(image)
         }
 
-        viewModel.nav.
+        binding.btnLogout.setOnClickListener {
+            viewModel.logoutUser()
+        }
+
+        viewModel.nav.observe(viewLifecycleOwner){
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_container,LoginFragment())
+                .commit()
+        }
 
     }
 }

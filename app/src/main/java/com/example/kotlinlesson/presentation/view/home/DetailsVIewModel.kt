@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlinlesson.domain.auth.AuthInteractor
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-@AndroidEntryPoint
+@HiltViewModel
 class DetailsVIewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
 
     private val _nav = MutableLiveData<Unit?>()
