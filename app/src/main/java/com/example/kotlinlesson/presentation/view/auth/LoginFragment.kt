@@ -1,50 +1,51 @@
 package com.example.kotlinlesson.presentation.view.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.databinding.FragmentLoginBinding
 import com.example.kotlinlesson.presentation.view.home.HomeFragment
-
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(), LoginView {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-
-    private val viewModel: LoginViewModel by viewModels()
+    @Inject
+    lateinit var loginPresenter: LoginPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginBinding.inflate(inflater,container,false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loginPresenter.setView(this)
+
         binding.btnLogin.setOnClickListener {
-            viewModel.loginUser(
+            loginPresenter.loginUser(
                 binding.etTextName.text.toString(),
                 binding.etTextPassword.text.toString()
             )
         }
+    }
 
-        viewModel.nav.observe(viewLifecycleOwner){
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, HomeFragment())
-                .addToBackStack("")
-                .commit()
-        }
+    override fun userLoggedIn() {
+        parentFragmentManager
+            .beginTransaction()
+            .replace(R.id.activity_container, HomeFragment())
+            .addToBackStack("")
+            .commit()
     }
 }

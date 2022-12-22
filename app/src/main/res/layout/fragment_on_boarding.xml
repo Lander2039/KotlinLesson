@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="viewModel"
-            type="com.example.kotlinlesson.presentation.view.auth.OnBoardingViewModel" />
-    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.view.auth.OnBoardingFragment">
@@ -19,9 +13,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@={viewModel.onBoardingText}"
             android:textColor="@color/black"
-            android:textSize="50sp"
+            android:text="@string/welcome_on_boarding_fragment"
+            android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -32,7 +26,6 @@
             android:id="@+id/btnFinish"
             android:layout_width="293dp"
             android:layout_height="53dp"
-            android:onClick="@{() -> viewModel.finishButtonClicked()}"
             android:text="@string/finish"
             android:textAllCaps="true"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -42,4 +35,4 @@
             app:layout_constraintVertical_bias="0.634" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+
