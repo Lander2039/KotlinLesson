@@ -4,11 +4,11 @@ import com.example.kotlinlesson.domain.model.UserModel
 
 interface AuthRepository {
 
-    fun LoginUser(userName: String, userPassword: String)
+   suspend fun LoginUser(userName: String, userPassword: String)
 
-    fun showUserCreds() :UserModel
+   suspend fun showUserCreds() :UserModel
 
-    fun doesUserExist(): Boolean
+   suspend fun doesUserExist(): Boolean
 
-    fun userLogout()
+   suspend fun userLogout()
 }
