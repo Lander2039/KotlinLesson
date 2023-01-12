@@ -11,4 +11,5 @@
     <string name="enter_your_password">Enter your password</string>
     <string name="go_to_onboarding">Go to OnBoarding</string>
     <string name="logout">Logout</string>
+    <string name="go_to_items_fragment">Go to items fragment</string>
 </resources>

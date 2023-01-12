@@ -33,7 +33,7 @@
             android:layout_width="293dp"
             android:layout_height="53dp"
             android:onClick="@{() -> viewModel.finishButtonClicked()}"
-            android:text="@string/finish"
+            android:text="@string/go_to_items_fragment"
             android:textAllCaps="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.kotlinlesson.R
 import com.example.kotlinlesson.domain.auth.AuthInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -16,10 +17,12 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
 
-    private val _nav = MutableLiveData<Unit?>()
-    val nav: LiveData<Unit?> = _nav
+    private val _nav = MutableLiveData<Int?>()
+    val nav: LiveData<Int?> = _nav
+
     private val _msg = MutableLiveData<String?>()
     val msg: LiveData<String?> = _msg
+
 
     fun loginUser(username: String, userPassword: String) {
         val coroutineExceptionHandler = CoroutineExceptionHandler{_, exception ->
@@ -29,7 +32,7 @@ class LoginViewModel @Inject constructor(private val authInteractor: AuthInterac
             try {
                 launch {
                     authInteractor.loginUser(username, userPassword)
-                    _nav.value = Unit // еслит мы хотит запускать на ио потоке то нужно использовать _nav.postValue(Unit
+                    _nav.value = R.id.action_loginFragment_to_homeFragment2 // еслит мы хотит запускать на ио потоке то нужно использовать _nav.postValue(Unit
                 }
 
             } catch (e: Exception) {
@@ -37,5 +40,9 @@ class LoginViewModel @Inject constructor(private val authInteractor: AuthInterac
                 Log.w("exception", "loginUser FAILED")
             }
         }
+    }
+
+    fun userNavigate(){
+        _nav.value = null
     }
 }

@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.kotlinlesson.R
 import com.example.kotlinlesson.databinding.FragmentHomeBinding
-import com.example.kotlinlesson.presentation.view.auth.OnBoardingFragment
 import com.example.kotlinlesson.utils.Coroutines.Coroutines
+import com.example.kotlinlesson.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,9 +50,13 @@ class HomeFragment : Fragment() {
 
         viewModel.showUserDate()
         binding.bntGoToBoarding.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.activity_container, OnBoardingFragment())
-                .commit()
+            viewModel.userLogout()
+        }
+
+        viewModel.nav.observe(viewLifecycleOwner) {
+            if (it != null) {
+                replaceGraph(it)
+            }
         }
 
         viewModel.userCreds.observe(viewLifecycleOwner) {

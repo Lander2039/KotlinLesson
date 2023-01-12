@@ -10,7 +10,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInteractor) : ViewModel() {
+class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInteractor) :
+    ViewModel() {
 
     private val _items = MutableLiveData<List<ItemsModel>>()
     val items: LiveData<List<ItemsModel>> = _items
@@ -21,20 +22,26 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
     private val _bundle = MutableLiveData<NavigateWithBundle?>()
     val bundle: LiveData<NavigateWithBundle?> = _bundle
 
-    fun getData(){
+    fun getData() {
         val listItems = itemsInteractor.getData()
         _items.value = listItems
     }
-    fun  imageViewClicked(){
+
+    fun imageViewClicked() {
 
         _msg.value = R.string.Imageviewclicked
     }
 
     fun elementClicked(name: String, date: String, imageView: Int) {
-        _bundle.value = NavigateWithBundle(name = name, date = date, image = imageView)
+        _bundle.value = NavigateWithBundle(
+            name = name,
+            date = date,
+            image = imageView,
+            destinationId = R.id.action_itemsFragment_to_detailsFragment
+        )
     }
 
-    fun userNavigated(){
+    fun userNavigated() {
         _bundle.value = null
     }
 }
@@ -42,9 +49,8 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
 data class NavigateWithBundle(
     val image: Int,
     val name: String,
-    val date: String
+    val date: String,
+    val destinationId: Int
 )
 
-class TestViewModel(){
 
-}
