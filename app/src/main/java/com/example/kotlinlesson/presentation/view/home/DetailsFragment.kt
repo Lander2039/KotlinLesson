@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.kotlinlesson.R
 import com.example.kotlinlesson.databinding.FragmentDetailsBinding
 import com.example.kotlinlesson.presentation.view.home.ItemsFragment.Companion.DATE
 import com.example.kotlinlesson.utils.BundleConstants.IMAGE_VIEW
 import com.example.kotlinlesson.utils.BundleConstants.NAME
-import com.example.kotlinlesson.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,7 +52,11 @@ class DetailsFragment : Fragment() {
 
         viewModel.nav.observe(viewLifecycleOwner) {
             if (it != null) {
-                replaceGraph(it)
+                val navGraph = findNavController().navInflater.inflate(
+                    it
+                )
+                navGraph.startDestination = R.id.loginFragment
+                findNavController().graph = navGraph
             }
         }
 

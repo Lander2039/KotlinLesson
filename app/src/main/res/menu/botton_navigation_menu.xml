@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@id/onBoardingFragment"
+        android:title="@string/on_boarding_fragment"
+        android:icon="@drawable/logout"/>
+
+    <item
+        android:id="@+id/itemsFragment"
+        android:title="@string/items_fragment"
+        android:icon="@drawable/spicok"
+        />
+
+</menu>

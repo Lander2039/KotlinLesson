@@ -12,4 +12,7 @@
     <string name="go_to_onboarding">Go to OnBoarding</string>
     <string name="logout">Logout</string>
     <string name="go_to_items_fragment">Go to items fragment</string>
+    <string name="home_fragment">Home Fragment</string>
+    <string name="items_fragment">Items Fragment</string>
+    <string name="on_boarding_fragment">On Boarding Fragment</string>
 </resources>
