@@ -20,7 +20,7 @@ class ItemsRepositoryImpl @Inject constructor(
             Log.w("SECOND RESPONSE", responseSecond.body()?.title.toString())
 
             val responseSecondQuery = apiServiceSecond.getPhotoByTitle("officia porro iure quia iusto qui ipsa ut modi")
-            
+
 
 
             val response = apiService.getData()
