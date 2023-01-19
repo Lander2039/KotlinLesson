@@ -89,6 +89,10 @@ class ItemsFragment : Fragment(), ItemsListener {
 
     }
 
+    override fun onDeleteClicked(description: String) {
+        viewModel.deleteItem(description)
+    }
+
     companion object {
         // we can used it, because we see where we get it
         const val DATE = "date"

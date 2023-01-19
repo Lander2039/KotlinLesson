@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinlesson.R
-import com.example.kotlinlesson.databinding.ItemFruitBinding
 import com.example.kotlinlesson.domain.model.ItemsModel
 import com.example.kotlinlesson.presentation.adapter.listener.ItemsListener
 import com.squareup.picasso.Picasso
@@ -20,19 +19,21 @@ class ItemsViewHolder(
 
         val description = view.findViewById<TextView>(R.id.tv_name)
         val imageView = view.findViewById<ImageView>(R.id.iv_image)
+        val delete = view.findViewById<ImageView>(R.id.delete)
 
         description.text = itemsModel.description
 
         Picasso.get().load(Uri.parse(itemsModel.image)).into(imageView)
 
-        imageView.setOnClickListener{
+        imageView.setOnClickListener {
             itemsListener.onClick()
         }
 
-        itemView.setOnClickListener{
+        itemView.setOnClickListener {
             itemsListener.onElementSelected(
                 itemsModel.description,
-                itemsModel.image)
+                itemsModel.image
+            )
         }
 
 //        viewBinding.tvText.text = itemsModel.description
@@ -49,5 +50,9 @@ class ItemsViewHolder(
 //                itemsModel.image
 //            )
 //        }
+        delete.setOnClickListener {
+            itemsListener.onDeleteClicked(itemsModel.description)
+        }
+
     }
 }

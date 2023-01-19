@@ -12,4 +12,12 @@
         android:icon="@drawable/spicok"
         />
 
+    <item
+        android:id="@+id/searchFragment"
+        android:title="@string/search_fragment"
+        android:icon="@drawable/ic_baseline_search_24"
+        />
+
+
+
 </menu>
