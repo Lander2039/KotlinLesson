@@ -1,4 +1,4 @@
-package com.example.kotlinlesson.data
+package com.example.kotlinlesson.data.service
 
 import com.example.kotlinlesson.data.model.ItemsResponse
 import retrofit2.Response

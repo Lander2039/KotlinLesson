@@ -15,6 +15,7 @@ import com.example.kotlinlesson.presentation.adapter.ItemsAdapter
 import com.example.kotlinlesson.presentation.adapter.listener.ItemsListener
 import com.example.kotlinlesson.presentation.view.ItemsViewModel
 import com.example.kotlinlesson.utils.BundleConstants
+import com.example.kotlinlesson.utils.BundleConstants.DESCRIPTION
 import com.example.kotlinlesson.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -66,7 +67,7 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
             if (navBundle != null) {
                 val bundle = Bundle()
-                bundle.putString("description", navBundle.description)
+                bundle.putString(DESCRIPTION, navBundle.description)
                 bundle.putString(BundleConstants.IMAGE_VIEW, navBundle.image)
 
 

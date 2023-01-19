@@ -4,5 +4,7 @@ object BundleConstants {
 
     const val IMAGE_VIEW = "imageView"
     const val NAME = "name"
+    const val DESCRIPTION = "description"
+
 
 }
