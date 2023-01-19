@@ -8,8 +8,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.databinding.ActivityMainBinding
@@ -48,12 +46,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         navController.addOnDestinationChangedListener(this)
 
         binding.bottonNavigation.setupWithNavController(navController)
-
-        val btnav = AppBarConfiguration(
-            setOf(R.id.homeFragment, R.id.itemsFragment)
-        )
-
-        NavigationUI.setupActionBarWithNavController(this, navController, btnav)
 
         viewModel.visibility.observe(this) {
             binding.bottonNavigation.visibility = it

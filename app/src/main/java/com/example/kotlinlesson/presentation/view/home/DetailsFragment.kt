@@ -1,6 +1,7 @@
 package com.example.kotlinlesson.presentation.view.home
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.databinding.FragmentDetailsBinding
-import com.example.kotlinlesson.presentation.view.home.ItemsFragment.Companion.DATE
 import com.example.kotlinlesson.utils.BundleConstants.IMAGE_VIEW
-import com.example.kotlinlesson.utils.BundleConstants.NAME
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,13 +37,11 @@ class DetailsFragment : Fragment() {
 
         val bundle = arguments
         bundle?.let { safeBundle ->
-            val name = safeBundle.getString(NAME)
-            val date = safeBundle.getString(DATE)
-            val image = safeBundle.getInt(IMAGE_VIEW)
+            val description = safeBundle.getString("description")
+            val image = safeBundle.getString(IMAGE_VIEW)
 
-            binding.detailsName.text = name
-            binding.detailsDate.text = date
-            binding.detailsImage.setBackgroundResource(image)
+            binding.detailsName.text = description
+            Picasso.get().load(Uri.parse(image)).into(binding.detailsImage)
         }
 
         binding.btnLogout.setOnClickListener {

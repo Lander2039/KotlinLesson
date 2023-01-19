@@ -10,11 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinlesson.R
+import com.example.kotlinlesson.databinding.FragmentItemsBinding
 import com.example.kotlinlesson.presentation.adapter.ItemsAdapter
 import com.example.kotlinlesson.presentation.adapter.listener.ItemsListener
 import com.example.kotlinlesson.presentation.view.ItemsViewModel
-import com.example.kotlinlesson.utils.BundleConstants.IMAGE_VIEW
-import com.example.kotlinlesson.utils.BundleConstants.NAME
+import com.example.kotlinlesson.utils.BundleConstants
 import com.example.kotlinlesson.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,12 +30,16 @@ class ItemsFragment : Fragment(), ItemsListener {
 
     private val viewModel: ItemsViewModel by viewModels()
 
+    private var _binding: FragmentItemsBinding? = null
+    private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_items, container, false)
+        _binding = FragmentItemsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,12 +59,16 @@ class ItemsFragment : Fragment(), ItemsListener {
             Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
         }
 
+        viewModel.error.observe(viewLifecycleOwner) {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        }
+
         viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
             if (navBundle != null) {
                 val bundle = Bundle()
-                bundle.putString(NAME, navBundle.name)
-                bundle.putString(DATE, navBundle.date)
-                bundle.putInt(IMAGE_VIEW, navBundle.image)
+                bundle.putString("description", navBundle.description)
+                bundle.putString(BundleConstants.IMAGE_VIEW, navBundle.image)
+
 
 
                 navigateWithBundle(
@@ -75,8 +83,8 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.imageViewClicked()
     }
 
-    override fun onElementSelected(name: String, date: String, imageView: Int) {
-        viewModel.elementClicked(name, date, imageView)
+    override fun onElementSelected(description: String, image: String) {
+        viewModel.elementClicked(description, image)
 
     }
 

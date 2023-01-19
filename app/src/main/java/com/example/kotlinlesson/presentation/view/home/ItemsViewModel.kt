@@ -3,10 +3,12 @@ package com.example.kotlinlesson.presentation.view
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.domain.items.ItemsInteractor
 import com.example.kotlinlesson.domain.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,9 +24,18 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
     private val _bundle = MutableLiveData<NavigateWithBundle?>()
     val bundle: LiveData<NavigateWithBundle?> = _bundle
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
+
     fun getData() {
-        val listItems = itemsInteractor.getData()
-        _items.value = listItems
+        viewModelScope.launch {
+            try {
+                val listItems = itemsInteractor.getData()
+                _items.value = listItems
+            } catch (e:Exception){
+                _error.value = e.message.toString()
+            }
+        }
     }
 
     fun imageViewClicked() {
@@ -32,11 +43,10 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
         _msg.value = R.string.Imageviewclicked
     }
 
-    fun elementClicked(name: String, date: String, imageView: Int) {
+    fun elementClicked(description: String, image: String) {
         _bundle.value = NavigateWithBundle(
-            name = name,
-            date = date,
-            image = imageView,
+            description,
+            image,
             destinationId = R.id.action_itemsFragment_to_detailsFragment
         )
     }
@@ -47,9 +57,8 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
 }
 
 data class NavigateWithBundle(
-    val image: Int,
-    val name: String,
-    val date: String,
+    val description: String,
+    val image: String,
     val destinationId: Int
 )
 

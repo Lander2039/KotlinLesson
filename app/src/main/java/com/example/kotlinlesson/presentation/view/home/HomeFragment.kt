@@ -49,6 +49,7 @@ class HomeFragment : Fragment() {
         Coroutines().testCoroutineCansel()
 
         viewModel.showUserDate()
+
         binding.bntGoToBoarding.setOnClickListener {
             viewModel.userLogout()
         }
