@@ -14,7 +14,7 @@ class ItemsRepositoryImpl @Inject constructor(
         return withContext(Dispatchers.IO) {
 
             val response = apiService.getData()
-            response.body()?.sampleList!!.let {
+            response.body()?.sampleList?.let {
                 it.map {
                     ItemsModel(it.description, it.imageUrl)
                 }

@@ -1,5 +1,6 @@
 package com.example.kotlinlesson.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,11 +12,13 @@ class ItemsAdapter(
     private val itemsListener: ItemsListener
 ) : RecyclerView.Adapter<ItemsViewHolder>() {
 
-    private var listItems = listOf<ItemsModel>()
+    private var listItems = mutableListOf<ItemsModel>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun submitList(list: List<ItemsModel>) {
-        this.listItems = list
-        notifyDataSetChanged()
+        this.listItems.clear()
+        this.listItems = list.toMutableList()
+        this.notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {

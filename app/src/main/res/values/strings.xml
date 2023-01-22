@@ -15,4 +15,5 @@
     <string name="home_fragment">Home Fragment</string>
     <string name="items_fragment">Items Fragment</string>
     <string name="on_boarding_fragment">On Boarding Fragment</string>
+    <string name="mango">Mango</string>
 </resources>
