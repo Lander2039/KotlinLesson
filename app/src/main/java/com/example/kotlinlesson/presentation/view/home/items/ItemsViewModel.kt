@@ -61,6 +61,12 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
             itemsInteractor.deleteItemByDescription(description)
         }
     }
+
+    fun onFavClicked(description: String){
+        viewModelScope.launch {
+            itemsInteractor.onFavClicked(description)
+        }
+    }
 }
 
 data class NavigateWithBundle(

@@ -1,4 +1,4 @@
-package com.example.kotlinlesson.presentation.view.home
+package com.example.kotlinlesson.presentation.view.home.items
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

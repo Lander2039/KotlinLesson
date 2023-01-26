@@ -1,4 +1,4 @@
-package com.example.kotlinlesson.presentation.view.home
+package com.example.kotlinlesson.presentation.view.home.items
 
 import android.annotation.SuppressLint
 import android.net.Uri

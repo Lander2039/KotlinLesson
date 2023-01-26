@@ -20,6 +20,7 @@ class ItemsViewHolder(
         val description = view.findViewById<TextView>(R.id.tv_name)
         val imageView = view.findViewById<ImageView>(R.id.iv_image)
         val delete = view.findViewById<ImageView>(R.id.delete)
+        val favorites = view.findViewById<ImageView>(R.id.btnFav)
 
         description.text = itemsModel.description
 
@@ -52,6 +53,10 @@ class ItemsViewHolder(
 //        }
         delete.setOnClickListener {
             itemsListener.onDeleteClicked(itemsModel.description)
+        }
+
+        favorites.setOnClickListener {
+            itemsListener.onFavClicked(itemsModel.description)
         }
 
     }

@@ -1,5 +1,6 @@
 package com.example.kotlinlesson.domain.items
 
+import com.example.kotlinlesson.domain.model.FavoriteModel
 import com.example.kotlinlesson.domain.model.ItemsModel
 import javax.inject.Inject
 
@@ -19,5 +20,15 @@ class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepo
 
     suspend fun findItem(searchText: String) : ItemsModel{
         return itemsRepository.findItemByDescription(searchText)
+    }
+
+    suspend fun onFavClicked(description:String){
+        val foundItem = itemsRepository.findItemByDescription(description)
+        itemsRepository.favClicked(foundItem)
+        itemsRepository.deleteItemByDescription(description)
+    }
+
+    suspend fun getFavorites(): List<FavoriteModel>{
+        return itemsRepository.getFavorites()
     }
 }

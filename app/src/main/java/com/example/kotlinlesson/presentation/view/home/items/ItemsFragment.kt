@@ -1,4 +1,4 @@
-package com.example.kotlinlesson.presentation.view.home
+package com.example.kotlinlesson.presentation.view.home.items
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -91,6 +91,10 @@ class ItemsFragment : Fragment(), ItemsListener {
 
     override fun onDeleteClicked(description: String) {
         viewModel.deleteItem(description)
+    }
+
+    override fun onFavClicked(description: String) {
+        viewModel.onFavClicked(description)
     }
 
     companion object {
