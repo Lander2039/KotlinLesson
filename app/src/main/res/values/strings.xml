@@ -17,4 +17,6 @@
     <string name="on_boarding_fragment">On Boarding Fragment</string>
     <string name="search_fragment">Search Fragment</string>
     <string name="favorites_fragment">Favorites fragment</string>
+    <string name="play_the_music">Play the Music</string>
+    <string name="stop_the_music">Stop the Music</string>
 </resources>

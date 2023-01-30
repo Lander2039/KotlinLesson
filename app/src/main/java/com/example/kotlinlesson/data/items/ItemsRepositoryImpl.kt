@@ -10,11 +10,11 @@ import com.example.kotlinlesson.domain.items.ItemsRepository
 import com.example.kotlinlesson.domain.model.FavoriteModel
 import com.example.kotlinlesson.domain.model.ItemsModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Named
-import kotlin.random.Random
-import kotlin.random.Random.Default.nextInt
 
 class ItemsRepositoryImpl @Inject constructor(
     @Named("FIRST") private val apiService: ApiService,
@@ -23,25 +23,34 @@ class ItemsRepositoryImpl @Inject constructor(
 ) : ItemsRepository {
     override suspend fun getData() {
         return withContext(Dispatchers.IO) {
-            if (!itemsDAO.doesItemsEntityExist()) {
-                Log.w("getData", "data not exists")
-                val response = apiService.getData()
-                Log.w("data", response.body()?.sampleList.toString())
-                response.body()?.sampleList?.let {
-                    it.map {
-                        val itemsEntity = ItemsEntity(java.util.Random().nextInt(), it.description, it.imageUrl)
-                        itemsDAO.insertItemsEntity(itemsEntity)
+            itemsDAO.doesItemsEntityExist().collect {
+                if (!it) {
+                    Log.w("getData", "data not exists")
+                    val response = apiService.getData()
+                    Log.w("data", response.body()?.sampleList.toString())
+                    response.body()?.sampleList?.let {
+                        it.map {
+                            val itemsEntity =
+                                ItemsEntity(
+                                    java.util.Random().nextInt(),
+                                    it.description,
+                                    it.imageUrl
+                                )
+                            itemsDAO.insertItemsEntity(itemsEntity)
+                        }
                     }
                 }
             }
         }
     }
 
-    override suspend fun showData(): List<ItemsModel> {
+    override suspend fun showData(): Flow<List<ItemsModel>> {
         return withContext(Dispatchers.IO) {
             val itemsEntity = itemsDAO.getItemsEntities()
-            itemsEntity.map {
-                ItemsModel(it.description, it.imageUrl)
+            itemsEntity.map { itemsList ->
+                itemsList.map { item ->
+                    ItemsModel(item.description, item.imageUrl)
+                }
             }
         }
     }
@@ -53,24 +62,29 @@ class ItemsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun findItemByDescription(searchText: String): ItemsModel {
-        return withContext(Dispatchers.IO){
-          val itemsEntity = itemsDAO.findItemEntityByDescription(searchText)
+        return withContext(Dispatchers.IO) {
+            val itemsEntity = itemsDAO.findItemEntityByDescription(searchText)
             ItemsModel(itemsEntity.description, itemsEntity.imageUrl)
         }
     }
 
     override suspend fun favClicked(itemsModel: ItemsModel) {
-        return withContext(Dispatchers.IO){
-            itemsDAO.insertFavoritesEntity(FavoritesEntity(java.util.Random().nextInt(),itemsModel.description,itemsModel.image))
-
+        return withContext(Dispatchers.IO) {
+            itemsDAO.insertFavoritesEntity(
+                FavoritesEntity(
+                    java.util.Random().nextInt(),
+                    itemsModel.description,
+                    itemsModel.image
+                )
+            )
         }
     }
 
     override suspend fun getFavorites(): List<FavoriteModel> {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             val favoritesEntity = itemsDAO.getFavoritesEntity()
             favoritesEntity.map {
-                FavoriteModel(it.description,it.imageUrl)
+                FavoriteModel(it.description, it.imageUrl)
             }
         }
     }
