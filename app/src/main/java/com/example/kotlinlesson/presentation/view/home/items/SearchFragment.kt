@@ -2,10 +2,12 @@ package com.example.kotlinlesson.presentation.view.home.items
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.kotlinlesson.databinding.FragmentSearchBinding
@@ -29,11 +31,12 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.start.setOnClickListener {
-            requireActivity().startService(Intent(requireContext(), MusicPlayer::class.java))
+            requireActivity().startForegroundService(Intent(requireContext(), MusicPlayer::class.java))
         }
 
         binding.stop.setOnClickListener {

@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.domain.items.ItemsInteractor
-import com.example.kotlinlesson.domain.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,7 +18,12 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
 //    private val _items = MutableLiveData<List<ItemsModel>>()
 //    val items: LiveData<List<ItemsModel>> = _items
 
-    val items = flow<Flow<List<ItemsModel>>> { emit(itemsInteractor.showData()) }
+    val items = flow { emit(itemsInteractor.showData()) }
+
+//    val getData = flow { emit((itemsInteractor.getData())) }
+
+//    private val _trigger = MutableLiveData<Flow<Unit>>()
+//    val trigger = _trigger
 
     private val _msg = MutableLiveData<Int>()
     val msg: LiveData<Int> = _msg
@@ -31,25 +34,36 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    fun getData() {
 
-        viewModelScope.launch {
-            try {
-                itemsInteractor.getData()
-            } catch (e: Exception) {
-                _error.value = e.message.toString()
-            }
-        }
+//    fun getData() {
+//        viewModelScope.launch {
+//            _trigger.value = flow { emit(itemsInteractor.getData()) }
+//        }
+//    }
+
+//    fun getData() {
+//
 //        viewModelScope.launch {
 //            try {
-//                val listItems = itemsInteractor.showData()
-//                listItems.collect{
-//                    _items.value = it
-//                }
+////                itemsInteractor.getData()
 //            } catch (e: Exception) {
 //                _error.value = e.message.toString()
 //            }
 //        }
+////        viewModelScope.launch {
+////            try {
+////                val listItems = itemsInteractor.showData()
+////                listItems.collect{
+////                    _items.value = it
+////                }
+////            } catch (e: Exception) {
+////                _error.value = e.message.toString()
+////            }
+////        }
+//    }
+
+    suspend fun getDataSimple() {
+        itemsInteractor.getData()
     }
 
     fun imageViewClicked() {

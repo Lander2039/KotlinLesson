@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.catch
 
 //not use
 //const val NAME = "name"
-private const val DETAILS = "Details"
+//private const val DETAILS = "Details"
 
 @AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemsListener {
@@ -53,7 +53,7 @@ class ItemsFragment : Fragment(), ItemsListener {
         recycledView.layoutManager = LinearLayoutManager(context)
         recycledView.adapter = itemsAdapter
 
-        viewModel.getData()
+//        viewModel.getData()
 //        viewModel.items.observe(viewLifecycleOwner) { listItems ->
 //            itemsAdapter.submitList(listItems)
 //        }
@@ -66,6 +66,23 @@ class ItemsFragment : Fragment(), ItemsListener {
                     itemsAdapter.submitList(list)
                 }
             }
+        }
+//        Способ №1
+//        viewLifecycleOwner.lifecycleScope.launchWhenResumed{
+//            viewModel.getData.collect()
+//        }
+
+//        Способ №2
+//        viewModel.getData()
+//        viewModel.trigger.observe(viewLifecycleOwner){
+//            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//                it.collect()
+//            }
+//        }
+
+//        Способ №3
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.getDataSimple()
         }
 
         viewModel.msg.observe(viewLifecycleOwner) { msg ->
@@ -111,6 +128,6 @@ class ItemsFragment : Fragment(), ItemsListener {
 
     companion object {
         // we can used it, because we see where we get it
-        const val DATE = "date"
+//        const val DATE = "date"
     }
 }
