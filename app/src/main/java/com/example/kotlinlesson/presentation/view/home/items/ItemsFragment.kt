@@ -53,10 +53,6 @@ class ItemsFragment : Fragment(), ItemsListener {
         recycledView.layoutManager = LinearLayoutManager(context)
         recycledView.adapter = itemsAdapter
 
-//        viewModel.getData()
-//        viewModel.items.observe(viewLifecycleOwner) { listItems ->
-//            itemsAdapter.submitList(listItems)
-//        }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.items.catch {
@@ -66,23 +62,6 @@ class ItemsFragment : Fragment(), ItemsListener {
                     itemsAdapter.submitList(list)
                 }
             }
-        }
-//        Способ №1
-//        viewLifecycleOwner.lifecycleScope.launchWhenResumed{
-//            viewModel.getData.collect()
-//        }
-
-//        Способ №2
-//        viewModel.getData()
-//        viewModel.trigger.observe(viewLifecycleOwner){
-//            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-//                it.collect()
-//            }
-//        }
-
-//        Способ №3
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.getDataSimple()
         }
 
         viewModel.msg.observe(viewLifecycleOwner) { msg ->

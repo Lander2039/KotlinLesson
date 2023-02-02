@@ -23,21 +23,19 @@ class ItemsRepositoryImpl @Inject constructor(
 ) : ItemsRepository {
     override suspend fun getData() {
         return withContext(Dispatchers.IO) {
-            itemsDAO.doesItemsEntityExist().collect {
-                if (!it) {
-                    Log.w("getData", "data not exists")
-                    val response = apiService.getData()
-                    Log.w("data", response.body()?.sampleList.toString())
-                    response.body()?.sampleList?.let {
-                        it.map {
-                            val itemsEntity =
-                                ItemsEntity(
-                                    java.util.Random().nextInt(),
-                                    it.description,
-                                    it.imageUrl
-                                )
-                            itemsDAO.insertItemsEntity(itemsEntity)
-                        }
+            if (!itemsDAO.doesItemsEntityExist()) {
+                Log.w("getData", "data not exists")
+                val response = apiService.getData()
+                Log.w("data", response.body()?.sampleList.toString())
+                response.body()?.sampleList?.let {
+                    it.map {
+                        val itemsEntity =
+                            ItemsEntity(
+                                java.util.Random().nextInt(),
+                                it.description,
+                                it.imageUrl
+                            )
+                        itemsDAO.insertItemsEntity(itemsEntity)
                     }
                 }
             }
