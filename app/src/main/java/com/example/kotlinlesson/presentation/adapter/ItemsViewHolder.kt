@@ -56,6 +56,7 @@ class ItemsViewHolder(
         }
 
         favorites.setOnClickListener {
+            favorites.isSelected = !it.isSelected
             itemsListener.onFavClicked(itemsModel.description)
         }
 

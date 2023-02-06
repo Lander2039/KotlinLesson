@@ -30,6 +30,11 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
+//        binding.btnOpenSecondActivity.setOnClickListener {
+//            startActivity(Intent(this, SecondActivity::class.java))
+//            Animatoo.animateCard(this)
+//        }
+
         viewModel.checkUserExists()
 
         navHostFragment = supportFragmentManager.findFragmentById(
