@@ -8,11 +8,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDestination
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.domain.auth.AuthInteractor
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
+
 class MainViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
 
     private val _nav = MutableLiveData<Int>()

@@ -13,21 +13,22 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.kotlinlesson.App
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.databinding.FragmentSearchBinding
 import com.example.kotlinlesson.presentation.view.home.items.service.MusicPlayer
+import com.example.kotlinlesson.utils.BaseFragment
 import com.squareup.picasso.Picasso
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class SearchFragment : Fragment() {
+
+class SearchFragment : BaseFragment() {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SearchViewModel by viewModels()
+
+    private val viewModel: SearchViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +41,8 @@ class SearchFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         val btn = Button(context)
         btn.background = context?.getDrawable(R.drawable.mango)

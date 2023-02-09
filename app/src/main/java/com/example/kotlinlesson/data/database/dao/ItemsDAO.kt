@@ -26,6 +26,8 @@ interface ItemsDAO {
     @Query("SELECT * FROM itemsEntity WHERE description = :searchText")
     fun findItemEntityByDescription(searchText: String): ItemsEntity
 
+    @Query("UPDATE ItemsEntity SET isFavorite = :isFavorite WHERE description = :description")
+    fun addToFavorite(description: String, isFavorite: Boolean)
 
     @Insert(onConflict = IGNORE) // игнорирование если они одинаковы
     fun insertFavoritesEntity(favoritesEntity: FavoritesEntity)

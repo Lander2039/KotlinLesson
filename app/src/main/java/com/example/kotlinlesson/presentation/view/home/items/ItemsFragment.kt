@@ -5,20 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlinlesson.App
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.databinding.FragmentItemsBinding
 import com.example.kotlinlesson.presentation.adapter.ItemsAdapter
 import com.example.kotlinlesson.presentation.adapter.listener.ItemsListener
 import com.example.kotlinlesson.presentation.view.ItemsViewModel
+import com.example.kotlinlesson.utils.BaseFragment
 import com.example.kotlinlesson.utils.BundleConstants
 import com.example.kotlinlesson.utils.BundleConstants.DESCRIPTION
 import com.example.kotlinlesson.utils.NavHelper.navigateWithBundle
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.catch
 
 
@@ -26,12 +26,13 @@ import kotlinx.coroutines.flow.catch
 //const val NAME = "name"
 //private const val DETAILS = "Details"
 
-@AndroidEntryPoint
-class ItemsFragment : Fragment(), ItemsListener {
+
+class ItemsFragment : BaseFragment(), ItemsListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-    private val viewModel: ItemsViewModel by viewModels()
+
+    private val viewModel: ItemsViewModel by viewModels { viewModelFactory }
 
     private var _binding: FragmentItemsBinding? = null
     private val binding get() = _binding!!
@@ -47,6 +48,7 @@ class ItemsFragment : Fragment(), ItemsListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         itemsAdapter = ItemsAdapter(this)
         val recycledView = view.findViewById<RecyclerView>(R.id.recyclerview)
@@ -122,8 +124,8 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.deleteItem(description)
     }
 
-    override fun onFavClicked(description: String) {
-        viewModel.onFavClicked(description)
+    override fun onFavClicked(description: String, isFavorite: Boolean) {
+        viewModel.onFavClicked(description, isFavorite)
     }
 
     companion object {

@@ -6,22 +6,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.kotlinlesson.App
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.databinding.FragmentDetailsBinding
+import com.example.kotlinlesson.utils.BaseFragment
 import com.example.kotlinlesson.utils.BundleConstants.IMAGE_VIEW
 import com.squareup.picasso.Picasso
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class DetailsFragment : Fragment() {
+
+class DetailsFragment : BaseFragment() {
 
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: DetailsVIewModel by viewModels()
+    private val viewModel: DetailsVIewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +35,7 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
         val bundle = arguments
         bundle?.let { safeBundle ->
             val description = safeBundle.getString("description")

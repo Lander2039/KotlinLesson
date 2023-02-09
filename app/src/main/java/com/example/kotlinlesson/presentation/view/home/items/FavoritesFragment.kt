@@ -4,22 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kotlinlesson.App
 import com.example.kotlinlesson.databinding.FragmentFavoritesBinding
 import com.example.kotlinlesson.presentation.view.home.items.adapter.FavoritesAdapter
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.kotlinlesson.utils.BaseFragment
 
-@AndroidEntryPoint
-class FavoritesFragment : Fragment() {
+
+class FavoritesFragment : BaseFragment() {
 
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var favAdapter: FavoritesAdapter
 
-    private val viewModel: FavoritesViewModel by viewModels()
+
+    private val viewModel: FavoritesViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +32,7 @@ class FavoritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         favAdapter = FavoritesAdapter()
 

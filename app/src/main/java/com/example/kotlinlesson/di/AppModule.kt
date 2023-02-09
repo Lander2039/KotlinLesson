@@ -1,19 +1,20 @@
 package com.example.kotlinlesson.di
 
+import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
 
-class AppModule {
+class AppModule(private val application: Application) {
 
     @Provides
-    fun  provideContext(@ApplicationContext context: Context): Context{
-        return context
+    fun provideApplication(): Application = this.application
+
+
+    @Provides
+    fun provideContext(): Context {
+        return this.application
     }
 }
