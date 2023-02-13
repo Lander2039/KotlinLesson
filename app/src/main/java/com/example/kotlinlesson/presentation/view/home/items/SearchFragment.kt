@@ -3,10 +3,12 @@ package com.example.kotlinlesson.presentation.view.home.items
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +22,7 @@ import com.example.kotlinlesson.databinding.FragmentSearchBinding
 import com.example.kotlinlesson.presentation.view.home.items.service.MusicPlayer
 import com.example.kotlinlesson.utils.BaseFragment
 import com.squareup.picasso.Picasso
+import io.reactivex.subjects.AsyncSubject
 
 
 class SearchFragment : BaseFragment() {
@@ -38,9 +41,21 @@ class SearchFragment : BaseFragment() {
         return binding.root
     }
 
+    @SuppressLint("CheckResult")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        val asyncSubject = AsyncSubject.create<Int>()
+        asyncSubject.onNext(1)
+        asyncSubject.onNext(2)
+        asyncSubject.onNext(3)
+        asyncSubject.subscribe({ Log.w("Early", it.toString()) })
+        asyncSubject.onNext(4)
+        asyncSubject.onNext(5)
+        asyncSubject.onComplete()
+
 
         (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
