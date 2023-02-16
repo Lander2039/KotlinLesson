@@ -1,11 +1,12 @@
 package com.example.kotlinlesson.data.service
 
 import com.example.kotlinlesson.data.model.ItemsResponse
-import retrofit2.Response
+import io.reactivex.Single
 import retrofit2.http.GET
 
 interface ApiService {
 
+
     @GET("/nkuYRM")
-    suspend fun getData(): Response<ItemsResponse>
+    fun getData(): Single<ItemsResponse>
 }

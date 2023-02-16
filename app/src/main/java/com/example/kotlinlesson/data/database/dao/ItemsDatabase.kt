@@ -24,6 +24,7 @@ abstract class ItemsDatabase : RoomDatabase() {
                     ItemsDatabase::class.java,
                     "Items_DB"
                 )
+                .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
 //                .addMigrations(MIGRATION_1_TO_2)
                 .build()

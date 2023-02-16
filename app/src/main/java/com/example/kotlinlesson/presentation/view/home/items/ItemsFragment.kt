@@ -55,20 +55,26 @@ class ItemsFragment : BaseFragment(), ItemsListener {
         recycledView.layoutManager = LinearLayoutManager(context)
         recycledView.adapter = itemsAdapter
 
+        viewModel.getData()
+
+        viewModel.items.observe(viewLifecycleOwner){
+            itemsAdapter.submitList(it)
+        }
+
 //        viewModel.getData()
 //        viewModel.items.observe(viewLifecycleOwner) { listItems ->
 //            itemsAdapter.submitList(listItems)
 //        }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.items.catch {
-                Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
-            }.collect { flowList ->
-                flowList.collect { list ->
-                    itemsAdapter.submitList(list)
-                }
-            }
-        }
+//        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+//            viewModel.items.catch {
+//                Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
+//            }.collect { flowList ->
+//                flowList.collect { list ->
+//                    itemsAdapter.submitList(list)
+//                }
+//            }
+//        }
 //        Способ №1
 //        viewLifecycleOwner.lifecycleScope.launchWhenResumed{
 //            viewModel.getData.collect()
@@ -82,10 +88,10 @@ class ItemsFragment : BaseFragment(), ItemsListener {
 //            }
 //        }
 
-//        Способ №3
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.getDataSimple()
-        }
+////        Способ №3
+//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//            viewModel.getDataSimple()
+//        }
 
         viewModel.msg.observe(viewLifecycleOwner) { msg ->
             Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()

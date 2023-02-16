@@ -47,14 +47,14 @@ class SearchFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val asyncSubject = AsyncSubject.create<Int>()
-        asyncSubject.onNext(1)
-        asyncSubject.onNext(2)
-        asyncSubject.onNext(3)
-        asyncSubject.subscribe({ Log.w("Early", it.toString()) })
-        asyncSubject.onNext(4)
-        asyncSubject.onNext(5)
-        asyncSubject.onComplete()
+//        val asyncSubject = AsyncSubject.create<Int>()
+//        asyncSubject.onNext(1)
+//        asyncSubject.onNext(2)
+//        asyncSubject.onNext(3)
+//        asyncSubject.subscribe({ Log.w("Early", it.toString()) })
+//        asyncSubject.onNext(4)
+//        asyncSubject.onNext(5)
+//        asyncSubject.onComplete()
 
 
         (requireActivity().applicationContext as App).provideAppComponent().inject(this)
