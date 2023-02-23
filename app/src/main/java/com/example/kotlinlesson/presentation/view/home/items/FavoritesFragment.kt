@@ -27,8 +27,6 @@ class FavoritesFragment : BaseFragment() {
     private lateinit var favAdapter: FavoritesAdapter
 
 
-
-
     private val viewModel: FavoritesViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
@@ -71,7 +69,7 @@ class FavoritesFragment : BaseFragment() {
 //    }
 //    val locationListener = LocationListener{
 //        Toast.makeText(requireContext(),"long: ${it.longitude} lat: ${it.latitude}", Toast.LENGTH_SHORT)
-//    }
+    }
 
 
-}
+    }

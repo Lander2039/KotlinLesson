@@ -55,36 +55,10 @@ class ItemsFragment : BaseFragment(), ItemsListener {
         recycledView.layoutManager = LinearLayoutManager(context)
         recycledView.adapter = itemsAdapter
 
-//        viewModel.getData()
-//        viewModel.items.observe(viewLifecycleOwner) { listItems ->
-//            itemsAdapter.submitList(listItems)
-//        }
+        viewModel.showData()
 
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.items.catch {
-                Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
-            }.collect { flowList ->
-                flowList.collect { list ->
-                    itemsAdapter.submitList(list)
-                }
-            }
-        }
-//        Способ №1
-//        viewLifecycleOwner.lifecycleScope.launchWhenResumed{
-//            viewModel.getData.collect()
-//        }
-
-//        Способ №2
-//        viewModel.getData()
-//        viewModel.trigger.observe(viewLifecycleOwner){
-//            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-//                it.collect()
-//            }
-//        }
-
-//        Способ №3
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.getDataSimple()
+        viewModel.items.observe(viewLifecycleOwner) { listItems ->
+            itemsAdapter.submitList(listItems)
         }
 
         viewModel.msg.observe(viewLifecycleOwner) { msg ->

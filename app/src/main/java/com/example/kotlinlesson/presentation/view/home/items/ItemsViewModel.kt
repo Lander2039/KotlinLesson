@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kotlinlesson.R
 import com.example.kotlinlesson.domain.items.ItemsInteractor
+import com.example.kotlinlesson.domain.model.ItemsModel
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,15 +15,8 @@ import javax.inject.Inject
 class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInteractor) :
     ViewModel() {
 
-//    private val _items = MutableLiveData<List<ItemsModel>>()
-//    val items: LiveData<List<ItemsModel>> = _items
-
-    val items = flow { emit(itemsInteractor.showData()) }
-
-//    val getData = flow { emit((itemsInteractor.getData())) }
-
-//    private val _trigger = MutableLiveData<Flow<Unit>>()
-//    val trigger = _trigger
+    private val _items = MutableLiveData<List<ItemsModel>>()
+    val items: LiveData<List<ItemsModel>> = _items
 
     private val _msg = MutableLiveData<Int>()
     val msg: LiveData<Int> = _msg
@@ -33,22 +27,14 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-
 //    fun getData() {
-//        viewModelScope.launch {
-//            _trigger.value = flow { emit(itemsInteractor.getData()) }
-//        }
-//    }
-
-//    fun getData() {
-//
-//        viewModelScope.launch {
-//            try {
-////                itemsInteractor.getData()
-//            } catch (e: Exception) {
-//                _error.value = e.message.toString()
-//            }
-//        }
+////        viewModelScope.launch {
+////            try {
+////               _items.value =  itemsInteractor.getData()
+////            } catch (e: Exception) {
+////                _error.value = e.message.toString()
+////            }
+////        }
 ////        viewModelScope.launch {
 ////            try {
 ////                val listItems = itemsInteractor.showData()
@@ -60,6 +46,18 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
 ////            }
 ////        }
 //    }
+
+    fun showData(){
+        viewModelScope.launch {
+            try {
+                itemsInteractor.getData()
+                _items.value = itemsInteractor.showData()
+            } catch (e: Exception){
+                _error.value = e.message
+            }
+        }
+
+    }
 
     suspend fun getDataSimple() {
         itemsInteractor.getData()
